@@ -43,3 +43,53 @@ export async function incrementCupsSponsored(by: number): Promise<number | null>
     return null;
   }
 }
+
+// Transaction log for the admin dashboard — every completed donation and cup
+// purchase, recorded from the Paystack webhook. Capped list so it can't grow
+// unbounded; Paystack's own dashboard remains the authoritative record.
+export interface TransactionRecord {
+  reference: string;
+  type: "donation" | "cup";
+  amount: number;
+  currency: string;
+  email: string;
+  name?: string;
+  phone?: string;
+  qty?: number;
+  street?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  notes?: string;
+  paidAt: string;
+  recordedAt: string;
+}
+
+const TRANSACTIONS_KEY = "wiv:transactions";
+const MAX_TRANSACTIONS = 5000;
+
+export async function recordTransaction(record: TransactionRecord): Promise<void> {
+  const creds = getCredentials();
+  if (!creds) return;
+  try {
+    const { Redis } = await import("@upstash/redis");
+    const redis = new Redis(creds);
+    await redis.lpush(TRANSACTIONS_KEY, record);
+    await redis.ltrim(TRANSACTIONS_KEY, 0, MAX_TRANSACTIONS - 1);
+  } catch (err) {
+    console.error("Redis record transaction failed:", err);
+  }
+}
+
+export async function listTransactions(limit = 1000): Promise<TransactionRecord[]> {
+  const creds = getCredentials();
+  if (!creds) return [];
+  try {
+    const { Redis } = await import("@upstash/redis");
+    const redis = new Redis(creds);
+    return await redis.lrange<TransactionRecord>(TRANSACTIONS_KEY, 0, limit - 1);
+  } catch (err) {
+    console.error("Redis list transactions failed:", err);
+    return [];
+  }
+}

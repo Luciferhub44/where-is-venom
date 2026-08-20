@@ -918,6 +918,81 @@ button { font-family: inherit; }
 
 .wv-success-page p { color: var(--venom-text-dim); line-height: 1.7; margin-bottom: 2rem; }
 
+/* ADMIN */
+.wv-admin {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+.wv-admin-login {
+  max-width: 320px;
+  margin: 6rem auto;
+  text-align: center;
+}
+
+.wv-admin-login h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+.wv-admin-login form { display: flex; flex-direction: column; gap: 1rem; }
+
+.wv-admin-login input {
+  background: var(--venom-surface);
+  border: 1px solid var(--venom-border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.wv-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.wv-admin-header h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+
+.wv-admin-actions { display: flex; gap: 0.75rem; align-items: center; }
+
+.wv-admin-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.wv-admin-stat {
+  background: var(--venom-surface);
+  border: 1px solid var(--venom-border-soft);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.wv-admin-stat .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--venom-text-dim); }
+.wv-admin-stat .value { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--venom-gold-deep); }
+
+.wv-admin-empty { color: var(--venom-text-dim); }
+.wv-admin-empty code { background: var(--venom-surface-soft); padding: 0.1rem 0.4rem; border-radius: 4px; }
+
+.wv-admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--venom-border-soft);
+  border-radius: 12px;
+  background: var(--venom-surface);
+}
+
+.wv-admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; white-space: nowrap; }
+.wv-admin-table th, .wv-admin-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--venom-border-soft); }
+.wv-admin-table th { color: var(--venom-text-dim); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.wv-admin-table tr:last-child td { border-bottom: none; }
+.wv-admin-table td.mono { font-family: monospace; font-size: 0.78rem; color: var(--venom-text-dim); }
+
 /* RESPONSIVE */
 @media (max-width: 780px) {
   .wv-campaign { grid-template-columns: 1fr; }

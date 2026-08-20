@@ -83,6 +83,7 @@ Variables** and add:
 | `PAYSTACK_SECRET_KEY` | your Paystack secret key (test or live) |
 | `NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY` | your Paystack public key |
 | `NEXT_PUBLIC_SITE_URL` | your production URL, e.g. `https://where-is-venom.vercel.app` |
+| `ADMIN_PASSWORD` | password for the `/admin` donations dashboard (see below) |
 
 Redeploy after adding env vars (`vercel --prod`), or push to your connected
 Git repo and let Vercel pick the vars up on the next build.
@@ -149,27 +150,67 @@ This step is entirely optional — checkout and donations work without it.
   check **Settings → Preferences** in your Paystack dashboard if USD
   checkout fails.
 
+## 7. Admin dashboard (`/admin`)
+
+There's still no full database — Paystack's own dashboard remains the
+authoritative record of every charge. But every completed donation and cup
+purchase is *also* logged to Redis from the webhook (name, phone, shipping
+address, prayer note, amount, reference — everything attached as
+`metadata`), and `/admin` gives you a simple internal view of that log:
+totals by currency, total cups sponsored, a searchable-by-eye table of every
+transaction, and a **CSV export** button.
+
+Setup:
+
+1. Set `ADMIN_PASSWORD` (see the env var table above) — a single shared
+   password, no user accounts. Pick something strong.
+2. Requires the Redis connection from step 5 above. Without Redis, `/admin`
+   still loads (and the login still works), but the table stays empty since
+   there's nowhere to log transactions.
+3. Visit `https://<your-domain>/admin`, sign in, and you're in.
+
+This only covers transactions from the point Redis was connected onward —
+it does not backfill from Paystack's history. The dashboard is excluded from
+the sitemap and `robots.txt` (`noindex`, disallowed for crawlers).
+
+## SEO
+
+- `app/layout.tsx` sets full metadata: title template, description,
+  keywords, Open Graph + Twitter card images (`public/images/cup.png` — swap
+  in a proper 1200×630 image when you have one), canonical URL, and a
+  `WebSite` JSON-LD block.
+- `app/sitemap.ts` and `app/robots.ts` generate `/sitemap.xml` and
+  `/robots.txt` from `NEXT_PUBLIC_SITE_URL` — set that env var correctly in
+  both `.env.local` and Vercel or the URLs will be wrong.
+- `/checkout/*`, `/cart`, `/admin`, and `/api/*` are all excluded from the
+  sitemap and disallowed in `robots.txt` — none of them are pages a search
+  engine should index.
+
 ## How sponsorships and donations are recorded
 
-There's no database in this app by design. Every transaction's details
-(donation amount, or cup quantity) are attached as `metadata` on the
-Paystack transaction, so your Paystack dashboard is the source of truth. If
-you outgrow that, add a database (Vercel Postgres, Supabase, etc.) and write
-records inside `app/api/paystack/webhook/route.ts`, where `charge.success`
-is already being handled.
+Paystack's dashboard is still the definitive source of truth for every
+charge. The Redis-backed transaction log described above (and the `/admin`
+dashboard that reads it) is a convenience layer on top of that, not a
+replacement — if you ever need a full relational database, add one (Vercel
+Postgres, Supabase, etc.) and write records inside
+`app/api/paystack/webhook/route.ts`, where `charge.success` is already being
+handled.
 
 ## Project structure
 
 ```
 app/
   page.tsx                       Landing page (server component)
+  sitemap.ts / robots.ts         Generated /sitemap.xml and /robots.txt
   checkout/success/page.tsx      Payment verification + confirmation
+  admin/page.tsx                 Donations & cup purchases dashboard (password-gated)
   api/paystack/initialize/       Starts a Paystack transaction (server-priced)
   api/paystack/verify/           Verifies a transaction by reference
   api/paystack/webhook/          Paystack webhook (signature-verified)
   api/cups-progress/             Live cups-sponsored counter
+  api/admin/                     Admin login/logout + CSV export
 components/                      UI building blocks
-lib/                             Episodes, campaign config, currency, Paystack + Redis helpers
+lib/                             Episodes, campaign config, currency, Paystack + Redis helpers, admin auth
 public/episodes/                 The 12 episode videos
 public/images/                   Campaign product photo
 ```

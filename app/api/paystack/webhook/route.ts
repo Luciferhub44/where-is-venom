@@ -1,8 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isValidWebhookSignature } from "@/lib/paystack";
-import { incrementCupsSponsored } from "@/lib/kv";
+import { incrementCupsSponsored, recordTransaction } from "@/lib/kv";
 
 export const runtime = "nodejs";
+
+interface ChargeSuccessData {
+  reference: string;
+  paid_at?: string;
+  customer?: { email?: string };
+  metadata?: {
+    type?: "donation" | "cup";
+    qty?: number;
+    amount?: number;
+    currency?: string;
+    name?: string;
+    phone?: string;
+    shipping_street?: string;
+    shipping_city?: string;
+    shipping_state?: string;
+    shipping_country?: string;
+    notes?: string;
+  };
+}
 
 // Configure this URL (https://<your-domain>/api/paystack/webhook) in
 // Paystack Dashboard → Settings → API Keys & Webhooks.
@@ -23,15 +42,33 @@ export async function POST(req: NextRequest) {
   }
 
   if (event.event === "charge.success") {
-    const data = event.data as {
-      reference: string;
-      metadata?: { type?: string; qty?: number };
-    };
+    const data = event.data as unknown as ChargeSuccessData;
+    const metadata = data.metadata;
 
     console.log(`Paystack charge.success — reference ${data.reference}`);
 
-    if (data.metadata?.type === "cup" && typeof data.metadata.qty === "number" && data.metadata.qty > 0) {
-      await incrementCupsSponsored(data.metadata.qty);
+    if (metadata?.type === "cup" && typeof metadata.qty === "number" && metadata.qty > 0) {
+      await incrementCupsSponsored(metadata.qty);
+    }
+
+    if (metadata?.type === "donation" || metadata?.type === "cup") {
+      await recordTransaction({
+        reference: data.reference,
+        type: metadata.type,
+        amount: metadata.amount ?? 0,
+        currency: metadata.currency ?? "NGN",
+        email: data.customer?.email ?? "",
+        name: metadata.name,
+        phone: metadata.phone,
+        qty: metadata.qty,
+        street: metadata.shipping_street,
+        city: metadata.shipping_city,
+        state: metadata.shipping_state,
+        country: metadata.shipping_country,
+        notes: metadata.notes,
+        paidAt: data.paid_at ?? new Date().toISOString(),
+        recordedAt: new Date().toISOString(),
+      });
     }
   }
 
