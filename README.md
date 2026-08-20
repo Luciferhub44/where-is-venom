@@ -84,6 +84,7 @@ Variables** and add:
 | `NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY` | your Paystack public key |
 | `NEXT_PUBLIC_SITE_URL` | your production URL, e.g. `https://where-is-venom.vercel.app` |
 | `ADMIN_PASSWORD` | password for the `/admin` donations dashboard (see below) |
+| `RESEND_API_KEY` | for donation/cup confirmation emails (see below) |
 
 Redeploy after adding env vars (`vercel --prod`), or push to your connected
 Git repo and let Vercel pick the vars up on the next build.
@@ -172,6 +173,28 @@ Setup:
 This only covers transactions from the point Redis was connected onward —
 it does not backfill from Paystack's history. The dashboard is excluded from
 the sitemap and `robots.txt` (`noindex`, disallowed for crawlers).
+
+## Confirmation emails (Resend)
+
+Every successful donation and cup purchase gets a branded confirmation email,
+sent from the webhook via [Resend](https://resend.com) once `charge.success`
+fires — before the counter/log update in step 6 above.
+
+1. Verify your sending domain in Resend (already done for
+   `whereisvenom.com`) and get an API key with sending access:
+   **Resend Dashboard → API Keys**.
+2. Set `RESEND_API_KEY` (see the env var table above), locally and on
+   Vercel.
+3. Sender identity is hardcoded in `lib/resend.ts`:
+   `Where Is Venom? <noreply@whereisvenom.com>`, replies routed to
+   `queenxtelle@gmail.com`. Change either there if needed.
+4. Templates live in `lib/emails.ts` — one for donations, one for cup
+   purchases (includes the shipping address and prayer note). Both are
+   plain inline-styled HTML (table-based, no external CSS) so they render
+   consistently across email clients.
+
+Without `RESEND_API_KEY` set, the webhook logs a warning and skips the email
+— it never blocks or fails the payment itself.
 
 ## SEO
 

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isValidWebhookSignature } from "@/lib/paystack";
-import { incrementCupsSponsored, recordTransaction } from "@/lib/kv";
+import { incrementCupsSponsored, recordTransaction, type TransactionRecord } from "@/lib/kv";
+import { sendEmail } from "@/lib/resend";
+import { cupConfirmationEmail, donationConfirmationEmail } from "@/lib/emails";
 
 export const runtime = "nodejs";
 
@@ -52,7 +54,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (metadata?.type === "donation" || metadata?.type === "cup") {
-      await recordTransaction({
+      const record: TransactionRecord = {
         reference: data.reference,
         type: metadata.type,
         amount: metadata.amount ?? 0,
@@ -68,7 +70,14 @@ export async function POST(req: NextRequest) {
         notes: metadata.notes,
         paidAt: data.paid_at ?? new Date().toISOString(),
         recordedAt: new Date().toISOString(),
-      });
+      };
+      await recordTransaction(record);
+
+      if (record.email) {
+        const { subject, html, text } =
+          record.type === "cup" ? cupConfirmationEmail(record) : donationConfirmationEmail(record);
+        await sendEmail({ to: record.email, subject, html, text });
+      }
     }
   }
 
