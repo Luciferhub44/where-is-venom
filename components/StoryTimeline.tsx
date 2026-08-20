@@ -38,6 +38,15 @@ export default function StoryTimeline() {
             <h3>{ep.title}</h3>
             <p>{ep.body}</p>
             <div className="wv-episode-quote">{ep.quote}</div>
+            {ep.num === 12 && (
+              <div className="wv-episode-bridge">
+                <p>But the story isn&apos;t over.</p>
+                <p>We&apos;re still fighting to get Venom to his next surgery.</p>
+                <a href="#cups-campaign" className="wv-btn wv-btn-primary">
+                  Help Us Get Him There
+                </a>
+              </div>
+            )}
             <div className="wv-episode-video">
               <video controls preload="none" playsInline>
                 <source src={episodeVideoSrc(ep.video)} type="video/mp4" />

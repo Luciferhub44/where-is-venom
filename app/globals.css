@@ -47,7 +47,7 @@ button { font-family: inherit; }
   top: 1.25rem;
   right: 1.25rem;
   z-index: 200;
-  box-shadow: 0 6px 20px var(--venom-shadow);
+  text-align: right;
 }
 
 .wv-currency-toggle {
@@ -56,6 +56,19 @@ button { font-family: inherit; }
   border-radius: 100px;
   overflow: hidden;
   background: var(--venom-surface);
+  box-shadow: 0 6px 20px var(--venom-shadow);
+}
+
+.wv-currency-note {
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--venom-surface);
+  border: 1px solid var(--venom-border);
+  border-radius: 8px;
+  font-size: 0.68rem;
+  color: var(--venom-text-dim);
+  max-width: 200px;
+  box-shadow: 0 4px 14px var(--venom-shadow);
 }
 
 .wv-currency-toggle button {
@@ -340,6 +353,26 @@ button { font-family: inherit; }
   object-fit: cover;
 }
 
+.wv-episode-bridge {
+  margin-top: 1.5rem;
+  max-width: 420px;
+  padding: 1.5rem;
+  background: var(--venom-surface);
+  border: 1px solid var(--venom-gold-soft);
+  border-radius: 12px;
+}
+
+.wv-episode-bridge p {
+  color: var(--venom-text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.wv-episode-bridge p:last-of-type {
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  color: var(--venom-text);
+}
+
 /* IMPACT */
 .wv-impact {
   background: var(--venom-surface);
@@ -367,6 +400,58 @@ button { font-family: inherit; }
 .wv-impact-item p {
   color: var(--venom-text-dim);
   font-size: 0.9rem;
+}
+
+/* TWO WAYS TO SUPPORT */
+.wv-ways-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.wv-way-card {
+  background: var(--venom-surface);
+  border: 1px solid var(--venom-border-soft);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 8px 22px var(--venom-shadow);
+}
+
+.wv-way-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.wv-way-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--venom-gold-deep);
+  margin-bottom: 0.5rem;
+}
+
+.wv-way-card p {
+  color: var(--venom-text-dim);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.wv-way-card .wv-btn { width: 100%; justify-content: center; }
+
+.wv-way-divider {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--venom-text-dim);
+  text-align: center;
 }
 
 /* CUPS CAMPAIGN */
@@ -530,6 +615,88 @@ button { font-family: inherit; }
   font-size: 0.9rem;
 }
 
+.wv-campaign-top {
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.wv-campaign-top .wv-countdown,
+.wv-campaign-top .wv-campaign-ended { justify-content: center; }
+
+.wv-campaign-cta.centered { justify-content: center; }
+
+.wv-progress-block { max-width: 480px; margin: 1.5rem auto 0; }
+
+.wv-progress-remaining {
+  font-size: 0.85rem;
+  color: var(--venom-text-dim);
+}
+
+.wv-product-details {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--venom-border-soft);
+  border-radius: 12px;
+  background: var(--venom-surface);
+}
+
+.wv-product-details h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.wv-product-price {
+  color: var(--venom-gold-deep);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.wv-product-details p {
+  color: var(--venom-text-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.wv-product-details p:last-child { margin-bottom: 0; }
+.wv-product-details strong { color: var(--venom-text); }
+
+.wv-dispatch-note {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--venom-gold);
+  background: var(--venom-surface-soft);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88rem;
+  color: var(--venom-text-dim);
+  line-height: 1.6;
+}
+
+.wv-dispatch-note strong { color: var(--venom-text); }
+
+/* CUPS CAMPAIGN RECAP (after Episode 12) */
+.wv-campaign-recap {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(135deg, var(--venom-surface), var(--venom-surface-soft));
+  border-radius: 24px;
+  padding: 3rem;
+  border: 1px solid var(--venom-gold-soft);
+  box-shadow: 0 18px 44px var(--venom-shadow);
+}
+
+.wv-campaign-recap h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 0.75rem; }
+
+.wv-recap-price {
+  font-family: 'Playfair Display', serif;
+  color: var(--venom-gold-deep);
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
 /* DONATE */
 .wv-donate-grid {
   display: grid;
@@ -628,6 +795,25 @@ button { font-family: inherit; }
 
 .wv-footer h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1rem; }
 .wv-footer p { color: var(--venom-text-dim); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+
+.wv-footer-next { margin-top: -1rem; font-weight: 600; color: var(--venom-text); }
+.wv-footer-cta-btn { margin-bottom: 2.5rem; }
+
+.wv-footer-final-cta {
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--venom-border-soft);
+  border-bottom: 1px solid var(--venom-border-soft);
+}
+
+.wv-footer-final-cta h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.wv-footer-final-cta p { margin-bottom: 1.5rem; }
 
 .wv-socials { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
 
@@ -736,6 +922,7 @@ button { font-family: inherit; }
 @media (max-width: 780px) {
   .wv-campaign { grid-template-columns: 1fr; }
   .wv-campaign-img { max-width: 220px; margin: 0 auto; }
+  .wv-ways-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {

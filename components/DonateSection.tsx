@@ -58,10 +58,14 @@ export default function DonateSection() {
     <section className="wv-section" id="donate">
       <div className="wv-section-header">
         <div className="wv-section-label">Support the Journey</div>
-        <h2>Give What You Can</h2>
+        <h2>Can&apos;t Buy a Cup? You Can Still Help.</h2>
         <p className="lead">
-          100% of donations go toward Venom&apos;s medical expenses, physical
-          therapy, and the ongoing care that keeps him moving forward.
+          If you can&apos;t purchase a cup, you can still support Venom&apos;s
+          surgery by contributing any amount.
+        </p>
+        <p className="lead">
+          Funds raised through this campaign will go toward Venom&apos;s
+          surgery, medical expenses, rehabilitation and ongoing care.
         </p>
       </div>
       <div className="wv-donate-grid">
@@ -74,7 +78,7 @@ export default function DonateSection() {
             <div className="wv-donate-amount">{formatMoney(tier.amount, currency)}</div>
             <p>{tier.label}</p>
             <button className={`wv-btn ${tier.featured ? "wv-btn-primary" : "wv-btn-ghost"}`}>
-              Donate {formatMoney(tier.amount, currency)}
+              Support with {formatMoney(tier.amount, currency)}
             </button>
           </div>
         ))}

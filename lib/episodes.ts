@@ -92,7 +92,7 @@ export const EPISODES: Episode[] = [
   {
     num: 12,
     title: "Twelve Episodes Later — Thank You",
-    body: `Twelve episodes later, all I can say is thank you. Our family has read every prayer…`,
+    body: `Twelve episodes later, all I can say is thank you. Our family has read every prayer, seen every share and felt every act of kindness.`,
     quote: `"Twelve episodes later, all I can say is thank you."`,
     video: "Twelve episodes later, all I can say is thank you.Our family has read every prayer, every encour.mp4",
   },
