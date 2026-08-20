@@ -8,6 +8,14 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
 export const DEFAULT_CURRENCY: Currency = "NGN";
 export const SUPPORTED_CURRENCIES: Currency[] = ["NGN", "USD"];
 
+// Fixed FX rate used to derive USD prices from the canonical NGN amounts.
+// No live FX lookup — update this constant when the rate needs to change.
+export const NGN_PER_USD = 1360;
+
+export function ngnToUsd(ngn: number): number {
+  return Math.round(ngn / NGN_PER_USD);
+}
+
 export function formatMoney(amount: number, currency: Currency): string {
   const symbol = CURRENCY_SYMBOLS[currency];
   return `${symbol}${amount.toLocaleString(undefined, {

@@ -1,4 +1,5 @@
 import { Currency } from "./types";
+import { ngnToUsd } from "./currency";
 
 // "2,000 Cups for Venom" — a time-boxed campaign to fund Venom's surgery.
 // Update CAMPAIGN_START_ISO to your real launch date/time before deploying;
@@ -21,7 +22,7 @@ export const CUP_IMAGE = "/images/cup.png";
 
 export const CUP_PRICE: Record<Currency, number> = {
   NGN: 16000,
-  USD: 10,
+  USD: ngnToUsd(16000),
 };
 
 export function getCampaignEndDate(): Date {

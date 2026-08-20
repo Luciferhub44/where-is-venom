@@ -697,6 +697,7 @@ button { font-family: inherit; }
 .wv-modal textarea { resize: vertical; }
 .wv-modal input:focus,
 .wv-modal textarea:focus { border-color: var(--venom-gold); }
+.wv-modal-row { display: flex; gap: 0.75rem; }
 .wv-modal .wv-btn { width: 100%; justify-content: center; margin-bottom: 0.5rem; }
 .wv-modal-error { color: var(--venom-danger); font-size: 0.85rem; margin-bottom: 1rem; }
 

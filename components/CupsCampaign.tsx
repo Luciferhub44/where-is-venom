@@ -42,7 +42,10 @@ export default function CupsCampaign({ initialCupsSponsored }: Props) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [shippingAddress, setShippingAddress] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -81,8 +84,8 @@ export default function CupsCampaign({ initialCupsSponsored }: Props) {
       setError("Please enter a phone number.");
       return;
     }
-    if (!shippingAddress.trim()) {
-      setError("Please enter a shipping address.");
+    if (!street.trim() || !city.trim() || !state.trim() || !country.trim()) {
+      setError("Please fill in your full shipping address.");
       return;
     }
     setLoading(true);
@@ -98,7 +101,10 @@ export default function CupsCampaign({ initialCupsSponsored }: Props) {
           qty,
           name,
           phone,
-          shippingAddress,
+          street,
+          city,
+          state,
+          country,
           notes,
         }),
       });
@@ -231,11 +237,31 @@ export default function CupsCampaign({ initialCupsSponsored }: Props) {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-            <textarea
-              placeholder="Shipping address (street, city, state, country)"
-              value={shippingAddress}
-              onChange={(e) => setShippingAddress(e.target.value)}
-              rows={3}
+            <input
+              type="text"
+              placeholder="Street address"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+            />
+            <div className="wv-modal-row">
+              <input
+                type="text"
+                placeholder="City"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="State"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="Country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
             />
             <textarea
               placeholder="A short prayer or note for Venom (optional)"

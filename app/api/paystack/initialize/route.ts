@@ -32,7 +32,10 @@ interface CupBody {
   qty: number;
   name: string;
   phone: string;
-  shippingAddress: string;
+  street: string;
+  city: string;
+  state: string;
+  country: string;
   notes?: string;
 }
 
@@ -88,8 +91,8 @@ export async function POST(req: NextRequest) {
       if (!body.phone?.trim()) {
         return NextResponse.json({ error: "Phone number is required" }, { status: 400 });
       }
-      if (!body.shippingAddress?.trim()) {
-        return NextResponse.json({ error: "Shipping address is required" }, { status: 400 });
+      if (!body.street?.trim() || !body.city?.trim() || !body.state?.trim() || !body.country?.trim()) {
+        return NextResponse.json({ error: "A full shipping address is required" }, { status: 400 });
       }
       // Amount is always computed server-side from the fixed cup price —
       // never trust a price sent from the client.
@@ -110,14 +113,20 @@ export async function POST(req: NextRequest) {
           currency: body.currency,
           name: body.name.trim(),
           phone: body.phone.trim(),
-          shipping_address: body.shippingAddress.trim(),
+          shipping_street: body.street.trim(),
+          shipping_city: body.city.trim(),
+          shipping_state: body.state.trim(),
+          shipping_country: body.country.trim(),
           notes: body.notes?.trim() || "",
           custom_fields: [
             { display_name: "Type", variable_name: "type", value: "Cup Sponsorship" },
             { display_name: "Cups", variable_name: "cups", value: String(qty) },
             { display_name: "Name", variable_name: "name", value: body.name.trim() },
             { display_name: "Phone", variable_name: "phone", value: body.phone.trim() },
-            { display_name: "Shipping Address", variable_name: "shipping_address", value: body.shippingAddress.trim() },
+            { display_name: "Street", variable_name: "shipping_street", value: body.street.trim() },
+            { display_name: "City", variable_name: "shipping_city", value: body.city.trim() },
+            { display_name: "State", variable_name: "shipping_state", value: body.state.trim() },
+            { display_name: "Country", variable_name: "shipping_country", value: body.country.trim() },
             { display_name: "Prayer / Note", variable_name: "notes", value: body.notes?.trim() || "—" },
           ],
         },
