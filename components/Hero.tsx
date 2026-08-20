@@ -3,10 +3,7 @@ import { FaHeart, FaChevronDown } from "react-icons/fa6";
 export default function Hero() {
   return (
     <section className="wv-hero">
-      <div className="wv-hero-badge">
-        <span className="pulse"></span>
-        A True Story of Faith &amp; Recovery
-      </div>
+      <div className="wv-hero-eyebrow">A True Story of Faith &amp; Recovery</div>
       <h1>
         Where Is Venom?
         <span>The story we never imagined we&apos;d have to tell.</span>
