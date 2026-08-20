@@ -30,6 +30,10 @@ interface CupBody {
   email: string;
   currency: Currency;
   qty: number;
+  name: string;
+  phone: string;
+  shippingAddress: string;
+  notes?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -78,6 +82,15 @@ export async function POST(req: NextRequest) {
       if (!Number.isFinite(qty) || qty <= 0) {
         return NextResponse.json({ error: "Invalid quantity" }, { status: 400 });
       }
+      if (!body.name?.trim()) {
+        return NextResponse.json({ error: "Name is required" }, { status: 400 });
+      }
+      if (!body.phone?.trim()) {
+        return NextResponse.json({ error: "Phone number is required" }, { status: 400 });
+      }
+      if (!body.shippingAddress?.trim()) {
+        return NextResponse.json({ error: "Shipping address is required" }, { status: 400 });
+      }
       // Amount is always computed server-side from the fixed cup price —
       // never trust a price sent from the client.
       const unitPrice = priceFor(CUP_PRICE, body.currency);
@@ -95,9 +108,17 @@ export async function POST(req: NextRequest) {
           qty,
           amount,
           currency: body.currency,
+          name: body.name.trim(),
+          phone: body.phone.trim(),
+          shipping_address: body.shippingAddress.trim(),
+          notes: body.notes?.trim() || "",
           custom_fields: [
             { display_name: "Type", variable_name: "type", value: "Cup Sponsorship" },
             { display_name: "Cups", variable_name: "cups", value: String(qty) },
+            { display_name: "Name", variable_name: "name", value: body.name.trim() },
+            { display_name: "Phone", variable_name: "phone", value: body.phone.trim() },
+            { display_name: "Shipping Address", variable_name: "shipping_address", value: body.shippingAddress.trim() },
+            { display_name: "Prayer / Note", variable_name: "notes", value: body.notes?.trim() || "—" },
           ],
         },
       });

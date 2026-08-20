@@ -40,6 +40,10 @@ export default function CupsCampaign({ initialCupsSponsored }: Props) {
   const [cupsSponsored, setCupsSponsored] = useState(initialCupsSponsored);
   const [modalOpen, setModalOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [shippingAddress, setShippingAddress] = useState("");
+  const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,13 +73,34 @@ export default function CupsCampaign({ initialCupsSponsored }: Props) {
       setError("Please enter a valid email address.");
       return;
     }
+    if (!name.trim()) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (!phone.trim()) {
+      setError("Please enter a phone number.");
+      return;
+    }
+    if (!shippingAddress.trim()) {
+      setError("Please enter a shipping address.");
+      return;
+    }
     setLoading(true);
     setError(null);
     try {
       const res = await fetch("/api/paystack/initialize", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kind: "cup", email, currency, qty }),
+        body: JSON.stringify({
+          kind: "cup",
+          email,
+          currency,
+          qty,
+          name,
+          phone,
+          shippingAddress,
+          notes,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
@@ -193,6 +218,30 @@ export default function CupsCampaign({ initialCupsSponsored }: Props) {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="tel"
+              placeholder="Phone number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <textarea
+              placeholder="Shipping address (street, city, state, country)"
+              value={shippingAddress}
+              onChange={(e) => setShippingAddress(e.target.value)}
+              rows={3}
+            />
+            <textarea
+              placeholder="A short prayer or note for Venom (optional)"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              rows={2}
             />
             {error && <div className="wv-modal-error">{error}</div>}
             <button className="wv-btn wv-btn-primary" onClick={confirmSponsor} disabled={loading}>

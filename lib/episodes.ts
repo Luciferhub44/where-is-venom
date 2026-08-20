@@ -15,8 +15,8 @@ export const EPISODES: Episode[] = [
   {
     num: 1,
     title: "The Silence",
-    body: `For over two years, people kept asking: "Where is Venom?" Some thought I left the country. Some thought I stopped creating. Some had no idea what happened. This is the story we were never ready to tell.`,
-    quote: `"Some thought I left the country. Some thought I stopped creating."`,
+    body: `For over two years, people kept asking: "Where is Venom?" Some thought He left the country. Some thought He stopped creating. Some had no idea what happened. This is the story we were never ready to tell.`,
+    quote: `"Some thought Venom left the country. Some thought Venom stopped creating."`,
     video: "For everyone who has asked about Venom over the years…Thank you🤍Episode 1.mp4",
   },
   {

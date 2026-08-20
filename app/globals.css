@@ -682,7 +682,8 @@ button { font-family: inherit; }
 
 .wv-modal h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
 .wv-modal p { color: var(--venom-text-dim); margin-bottom: 1.5rem; font-size: 0.95rem; }
-.wv-modal input {
+.wv-modal input,
+.wv-modal textarea {
   width: 100%;
   background: var(--venom-bg);
   border: 1px solid var(--venom-border);
@@ -693,7 +694,9 @@ button { font-family: inherit; }
   margin-bottom: 1rem;
   outline: none;
 }
-.wv-modal input:focus { border-color: var(--venom-gold); }
+.wv-modal textarea { resize: vertical; }
+.wv-modal input:focus,
+.wv-modal textarea:focus { border-color: var(--venom-gold); }
 .wv-modal .wv-btn { width: 100%; justify-content: center; margin-bottom: 0.5rem; }
 .wv-modal-error { color: var(--venom-danger); font-size: 0.85rem; margin-bottom: 1rem; }
 
