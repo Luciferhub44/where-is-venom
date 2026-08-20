@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { CurrencyProvider } from "@/lib/currency-context";
 import CurrencyToggle from "@/components/CurrencyToggle";
 import { SITE_URL } from "@/lib/site";
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CurrencyToggle />
           {children}
         </CurrencyProvider>
+        <Analytics />
       </body>
     </html>
   );
