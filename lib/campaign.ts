@@ -13,7 +13,7 @@ export const CAMPAIGN_START_ISO = "2026-08-20T00:00:00Z";
 
 // Shown until Redis is configured (see lib/kv.ts) or until it's caught up —
 // set to the real number of cups already claimed so the bar isn't empty.
-export const CAMPAIGN_FALLBACK_CUPS_SPONSORED = 60;
+export const CAMPAIGN_FALLBACK_CUPS_SPONSORED = 287;
 
 export const CUP_NAME = "XS Skin Glow Herbal Soap — Sponsor a Cup";
 export const CUP_IMAGE = "/images/cup.png";
