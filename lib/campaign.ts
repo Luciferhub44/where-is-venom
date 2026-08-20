@@ -17,7 +17,7 @@ export const CAMPAIGN_FALLBACK_CUPS_SPONSORED = 60;
 export const CUP_NAME = "XS Skin Glow Herbal Soap — Sponsor a Cup";
 export const CUP_DESCRIPTION =
   "Buy or sponsor a cup toward Venom's surgery fund. Every cup is a real jar of XS Skin Glow Herbal Soap by Xtelle Secrets.";
-export const CUP_IMAGE = "/images/xs-skin-glow-soap.jpg";
+export const CUP_IMAGE = "/images/cup.png";
 
 export const CUP_PRICE: Record<Currency, number> = {
   NGN: 16000,
