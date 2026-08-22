@@ -5,6 +5,9 @@ export interface Episode {
   quote: string;
   /** Exact filename as it sits in public/episodes/ */
   video: string;
+  /** Filename in public/images/episodes/ — a real extracted frame, not a placeholder */
+  poster: string;
+  durationSeconds: number;
 }
 
 // Episodes 1–5 use the narrative written for the original site. Episodes
@@ -18,6 +21,8 @@ export const EPISODES: Episode[] = [
     body: `For over two years, people kept asking: "Where is Venom?" Some thought He left the country. Some thought He stopped creating. Some had no idea what happened. This is the story we were never ready to tell.`,
     quote: `"Some thought Venom left the country. Some thought Venom stopped creating."`,
     video: "For everyone who has asked about Venom over the years…Thank you🤍Episode 1.mp4",
+    poster: "episode-1.jpg",
+    durationSeconds: 94,
   },
   {
     num: 2,
@@ -25,6 +30,8 @@ export const EPISODES: Episode[] = [
     body: `Two years ago, my brother's life changed in a matter of seconds. Sharing this story isn't easy, but I promised myself that if God brought him through it, I would tell it honestly.`,
     quote: `"I promised myself that if God brought him through it, I would tell it honestly."`,
     video: "We thought he would be okay.Episode 2 ❤️#venomzcustomz.mp4",
+    poster: "episode-2.jpg",
+    durationSeconds: 64,
   },
   {
     num: 3,
@@ -32,6 +39,8 @@ export const EPISODES: Episode[] = [
     body: `The doctors knew something wasn't right, and every second suddenly mattered. In the chaos of emergency rooms and beeping machines, we learned that hope isn't just a feeling—it's a fight.`,
     quote: `"The doctors knew something wasn't right, and every second suddenly mattered."`,
     video: "The moment we realized this was bigger than we thought.Episode 3. ❤️#Whereisvenom #Venomstory #h.mp4",
+    poster: "episode-3.jpg",
+    durationSeconds: 66,
   },
   {
     num: 4,
@@ -39,6 +48,8 @@ export const EPISODES: Episode[] = [
     body: `The doctor looked at us and said, "Your brother is in a coma." Nothing could have prepared us for that moment. This episode takes you through the fear, the prayers, and the hope we held onto when everything seemed uncertain.`,
     quote: `"Your brother is in a coma. Nothing could have prepared us for that moment."`,
     video: "The hardest part of our story begins here.Episode 4.#WhereIsVenom.mp4",
+    poster: "episode-4.jpg",
+    durationSeconds: 116,
   },
   {
     num: 5,
@@ -46,6 +57,8 @@ export const EPISODES: Episode[] = [
     body: `Hope was all we had. Through the longest days of waiting, prayer became the only language that made sense. Thank you for walking this journey with us.`,
     quote: `"Hope was all we had. Thank you for walking this journey with us."`,
     video: "Hope was all we had.Episode 5.Thank you for walking this journey with us❤️🙏#WhereIsVenom.mp4",
+    poster: "episode-5.jpg",
+    durationSeconds: 125,
   },
   {
     num: 6,
@@ -53,6 +66,8 @@ export const EPISODES: Episode[] = [
     body: `Every episode has been harder to edit than the last. Not because I've forgotten these moments…`,
     quote: `"Every episode has been harder to edit than the last."`,
     video: "Every episode has been harder to edit than the last.Not because I’ve forgotten these moments, bu.mp4",
+    poster: "episode-6.jpg",
+    durationSeconds: 116,
   },
   {
     num: 7,
@@ -60,6 +75,8 @@ export const EPISODES: Episode[] = [
     body: `One thing this journey has taught us is that healing isn't always loud. Sometimes it looks like…`,
     quote: `"Healing isn't always loud."`,
     video: "One thing this journey has taught us is that healing isn’t always loud. Sometimes it looks like .mp4",
+    poster: "episode-7.jpg",
+    durationSeconds: 106,
   },
   {
     num: 8,
@@ -67,6 +84,8 @@ export const EPISODES: Episode[] = [
     body: `Some moments become even more precious when you look back on them.`,
     quote: `"Some moments become even more precious when you look back on them."`,
     video: "Some moments become even more precious when you look back on them. ❤️Episode 8..mp4",
+    poster: "episode-8.jpg",
+    durationSeconds: 71,
   },
   {
     num: 9,
@@ -74,6 +93,8 @@ export const EPISODES: Episode[] = [
     body: `Some days, hope was enough.`,
     quote: `"Some days, hope was enough."`,
     video: "Some days, hope was enough❤️.mp4",
+    poster: "episode-9.jpg",
+    durationSeconds: 71,
   },
   {
     num: 10,
@@ -81,6 +102,8 @@ export const EPISODES: Episode[] = [
     body: `We kept telling ourselves… "Just one more surgery." We had no idea how many more were still ahead…`,
     quote: `"Just one more surgery — we had no idea how many more were still ahead."`,
     video: "We kept telling ourselves…“Just one more surgery.”We had no idea how many more were still ahead .mp4",
+    poster: "episode-10.jpg",
+    durationSeconds: 74,
   },
   {
     num: 11,
@@ -88,6 +111,8 @@ export const EPISODES: Episode[] = [
     body: `Some memories are still hard to revisit. Every time I sit down to edit these episodes…`,
     quote: `"Some memories are still hard to revisit."`,
     video: "Some memories are still hard to revisit.Every time I sit down to edit these episodes, I’m remind.mp4",
+    poster: "episode-11.jpg",
+    durationSeconds: 72,
   },
   {
     num: 12,
@@ -95,9 +120,21 @@ export const EPISODES: Episode[] = [
     body: `Twelve episodes later, all I can say is thank you. Our family has read every prayer, seen every share and felt every act of kindness.`,
     quote: `"Twelve episodes later, all I can say is thank you."`,
     video: "Twelve episodes later, all I can say is thank you.Our family has read every prayer, every encour.mp4",
+    poster: "episode-12.jpg",
+    durationSeconds: 80,
   },
 ];
 
+// No confirmed original publish dates for these episodes (Instagram/TikTok
+// exports carry no embedded creation date, and file timestamps only reflect
+// when they were added to this repo) — using the date the site went live
+// for every episode's uploadDate rather than fabricating individual dates.
+export const EPISODES_UPLOAD_DATE = "2026-08-20T00:00:00Z";
+
 export function episodeVideoSrc(filename: string): string {
   return `/episodes/${encodeURIComponent(filename)}`;
+}
+
+export function episodePosterSrc(filename: string): string {
+  return `/images/episodes/${filename}`;
 }

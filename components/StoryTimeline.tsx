@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { EPISODES, episodeVideoSrc } from "@/lib/episodes";
+import { EPISODES, episodePosterSrc, episodeVideoSrc } from "@/lib/episodes";
 
 export default function StoryTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +48,7 @@ export default function StoryTimeline() {
               </div>
             )}
             <div className="wv-episode-video">
-              <video controls preload="none" playsInline>
+              <video controls preload="none" playsInline poster={episodePosterSrc(ep.poster)}>
                 <source src={episodeVideoSrc(ep.video)} type="video/mp4" />
               </video>
             </div>
