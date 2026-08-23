@@ -6,7 +6,7 @@ import { ngnToUsd } from "./currency";
 // the countdown and progress bar are both driven from this file.
 
 export const CAMPAIGN_GOAL_CUPS = 2000;
-export const CAMPAIGN_DURATION_DAYS = 3;
+export const CAMPAIGN_DURATION_DAYS = 4;
 
 // ISO timestamp (UTC) — edit this to when the campaign actually goes live.
 export const CAMPAIGN_START_ISO = "2026-08-20T00:00:00Z";
