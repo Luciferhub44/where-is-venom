@@ -1,5 +1,5 @@
 // Server-only helpers for talking to Paystack's REST API.
-// NEVER import this file from a "use client" component — it uses the secret key.
+// NEVER import this file from a "use client" component: it uses the secret key.
 import crypto from "crypto";
 
 const PAYSTACK_BASE_URL = "https://api.paystack.co";
