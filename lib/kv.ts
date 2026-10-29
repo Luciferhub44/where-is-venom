@@ -93,3 +93,28 @@ export async function listTransactions(limit = 1000): Promise<TransactionRecord[
     return [];
   }
 }
+
+export interface MemorialSubmission {
+  id: string;
+  name: string;
+  relationship: string;
+  email: string;
+  message: string;
+  submittedAt: string;
+}
+
+const MEMORIAL_SUBMISSIONS_KEY = "wiv:memorial_submissions";
+
+export async function listMemorialSubmissions(limit = 100): Promise<MemorialSubmission[]> {
+  const creds = getCredentials();
+  if (!creds) return [];
+  try {
+    const { Redis } = await import("@upstash/redis");
+    const redis = new Redis(creds);
+    return await redis.lrange<MemorialSubmission>(MEMORIAL_SUBMISSIONS_KEY, 0, limit - 1);
+  } catch (err) {
+    console.error("Redis list memorial submissions failed:", err);
+    return [];
+  }
+}
+

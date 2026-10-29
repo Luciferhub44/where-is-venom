@@ -1,11 +1,9 @@
 import Hero from "@/components/Hero";
 import StoryTimeline from "@/components/StoryTimeline";
-import ImpactStats from "@/components/ImpactStats";
-import CupsCampaign from "@/components/CupsCampaign";
-import TwoWaysToSupport from "@/components/TwoWaysToSupport";
-import DonateSection from "@/components/DonateSection";
+import BeyondTheJourney from "@/components/BeyondTheJourney";
+import ShareMemory from "@/components/ShareMemory";
+import ThankYou from "@/components/ThankYou";
 import Footer from "@/components/Footer";
-import { getCupsSponsored } from "@/lib/kv";
 import {
   EPISODES,
   EPISODES_UPLOAD_DATE,
@@ -32,9 +30,7 @@ function episodesJsonLd() {
   };
 }
 
-export default async function HomePage() {
-  const cupsSponsored = await getCupsSponsored();
-
+export default function HomePage() {
   return (
     <>
       <script
@@ -42,12 +38,10 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(episodesJsonLd()) }}
       />
       <Hero />
-      <CupsCampaign initialCupsSponsored={cupsSponsored} variant="full" />
       <StoryTimeline />
-      <CupsCampaign initialCupsSponsored={cupsSponsored} variant="recap" />
-      <ImpactStats />
-      <TwoWaysToSupport />
-      <DonateSection />
+      <BeyondTheJourney />
+      <ShareMemory />
+      <ThankYou />
       <Footer />
     </>
   );
