@@ -47,7 +47,7 @@ ${bodyHtml}
 </tr>
 <tr>
 <td style="padding:24px 40px;background-color:#f6ecdc;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#7d6f5c;border-radius:0 0 16px 16px;">
-Where Is Venom? — Queen Xtelle<br>
+Where Is Venom?: Queen Xtelle<br>
 Questions? Reply to this email or write to queenxtelle@gmail.com
 </td>
 </tr>
@@ -72,7 +72,7 @@ export function donationConfirmationEmail(record: TransactionRecord): RenderedEm
   const html = wrapEmail(`
 <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:20px;margin:0 0 16px;color:#2f2a22;">Thank you, ${greetingName}.</h1>
 <p style="margin:0 0 16px;">We received your donation of <strong>${amount}</strong> toward Venom&rsquo;s surgery, medical expenses, rehabilitation and ongoing care.</p>
-<p style="margin:0 0 16px;">Every gift — large or small — is a thread in this family&rsquo;s story of faith and recovery. Thank you for walking this journey with us.</p>
+<p style="margin:0 0 16px;">Every gift, large or small, is a thread in this family&rsquo;s story of faith and recovery. Thank you for walking this journey with us.</p>
 <p style="margin:0;color:#7d6f5c;font-size:13px;">Reference: ${escapeHtml(record.reference)}</p>
 ${button("Visit Where Is Venom?", SITE_URL)}
 `);
@@ -81,7 +81,7 @@ ${button("Visit Where Is Venom?", SITE_URL)}
 
 We received your donation of ${amount} toward Venom's surgery, medical expenses, rehabilitation and ongoing care.
 
-Every gift — large or small — is a thread in this family's story of faith and recovery. Thank you for walking this journey with us.
+Every gift, large or small, is a thread in this family's story of faith and recovery. Thank you for walking this journey with us.
 
 Reference: ${record.reference}
 
@@ -103,7 +103,7 @@ export function cupConfirmationEmail(record: TransactionRecord): RenderedEmail {
   const html = wrapEmail(`
 <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:20px;margin:0 0 16px;color:#2f2a22;">Thank you, ${greetingName}.</h1>
 <p style="margin:0 0 16px;">Your sponsorship of <strong>${cupsLabel}</strong> of XS Skin Glow Herbal Soap (${amount}) is confirmed.</p>
-<p style="margin:0 0 16px;">Please note: these soaps are handmade and produced in batches. Dispatch will begin after the 3-day campaign closes — thank you for your patience and for supporting Venom through your purchase.</p>
+<p style="margin:0 0 16px;">Please note: these soaps are handmade and produced in batches. Dispatch will begin after the 3-day campaign closes; thank you for your patience and for supporting Venom through your purchase.</p>
 ${shippingLine ? `<p style="margin:0 0 16px;">Shipping to: ${shippingLine}</p>` : ""}
 ${record.notes ? `<p style="margin:0 0 16px;font-style:italic;color:#7d6f5c;">Your note: &ldquo;${escapeHtml(record.notes)}&rdquo;</p>` : ""}
 <p style="margin:0;color:#7d6f5c;font-size:13px;">Reference: ${escapeHtml(record.reference)}</p>
@@ -114,7 +114,7 @@ ${button("Visit Where Is Venom?", SITE_URL)}
 
 Your sponsorship of ${cupsLabel} of XS Skin Glow Herbal Soap (${amount}) is confirmed.
 
-Please note: these soaps are handmade and produced in batches. Dispatch will begin after the 3-day campaign closes — thank you for your patience and for supporting Venom through your purchase.
+Please note: these soaps are handmade and produced in batches. Dispatch will begin after the 3-day campaign closes; thank you for your patience and for supporting Venom through your purchase.
 ${shippingLine ? `\nShipping to: ${shippingLine}\n` : ""}${record.notes ? `\nYour note: "${record.notes}"\n` : ""}
 Reference: ${record.reference}
 

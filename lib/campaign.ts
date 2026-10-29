@@ -1,21 +1,21 @@
 import { Currency } from "./types";
 import { ngnToUsd } from "./currency";
 
-// "2,000 Cups for Venom" — a time-boxed campaign to fund Venom's surgery.
+// "2,000 Cups for Venom": a time-boxed campaign to fund Venom's surgery.
 // Update CAMPAIGN_START_ISO to your real launch date/time before deploying;
 // the countdown and progress bar are both driven from this file.
 
 export const CAMPAIGN_GOAL_CUPS = 2000;
 export const CAMPAIGN_DURATION_DAYS = 4;
 
-// ISO timestamp (UTC) — edit this to when the campaign actually goes live.
+// ISO timestamp (UTC): edit this to when the campaign actually goes live.
 export const CAMPAIGN_START_ISO = "2026-08-20T00:00:00Z";
 
-// Shown until Redis is configured (see lib/kv.ts) or until it's caught up —
+// Shown until Redis is configured (see lib/kv.ts) or until it's caught up:
 // set to the real number of cups already claimed so the bar isn't empty.
 export const CAMPAIGN_FALLBACK_CUPS_SPONSORED = 287;
 
-export const CUP_NAME = "XS Skin Glow Herbal Soap — Sponsor a Cup";
+export const CUP_NAME = "XS Skin Glow Herbal Soap: Sponsor a Cup";
 export const CUP_IMAGE = "/images/cup.png";
 
 export const CUP_PRICE: Record<Currency, number> = {
