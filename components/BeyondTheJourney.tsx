@@ -24,7 +24,7 @@ export default function BeyondTheJourney() {
           <div className="wv-pillar-tag">Personality &amp; Spirit</div>
           <h3>The Man We Knew</h3>
           <p>
-            Venom had an undeniable spark — full of creative ambition, warmth, and resilience. Whether
+            Venom had an undeniable spark, full of creative ambition, warmth, and resilience. Whether
             he was designing, customizing, or making those around him laugh, his passion for life was
             contagious.
           </p>
@@ -57,7 +57,7 @@ export default function BeyondTheJourney() {
           <div className="wv-pillar-photo">
             <Image
               src="/images/venom-memory-car.jpg"
-              alt="Venom — Moments of joy"
+              alt="Venom: Moments of joy"
               width={540}
               height={960}
               className="wv-pillar-img"

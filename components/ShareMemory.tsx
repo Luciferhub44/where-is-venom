@@ -118,7 +118,7 @@ export default function ShareMemory() {
             </div>
 
             <div className="wv-form-field">
-              <label htmlFor="memory-email">Email Address (Optional — kept private)</label>
+              <label htmlFor="memory-email">Email Address (Optional, kept private)</label>
               <input
                 id="memory-email"
                 type="email"

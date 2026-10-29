@@ -5,14 +5,14 @@ export interface Episode {
   quote: string;
   /** Exact filename as it sits in public/episodes/ */
   video: string;
-  /** Filename in public/images/episodes/ — a real extracted frame, not a placeholder */
+  /** Filename in public/images/episodes/ (a real extracted frame, not a placeholder) */
   poster: string;
   durationSeconds: number;
 }
 
 // Episodes 1–5 use the narrative written for the original site. Episodes
 // 6–12 are drawn directly from the creator's own captions on each video
-// (trimmed where the source filename itself was cut short) — nothing here
+// (trimmed where the source filename itself was cut short), nothing here
 // is invented dialogue.
 export const EPISODES: Episode[] = [
   {
@@ -36,7 +36,7 @@ export const EPISODES: Episode[] = [
   {
     num: 3,
     title: "Every Second Mattered",
-    body: `The doctors knew something wasn't right, and every second suddenly mattered. In the chaos of emergency rooms and beeping machines, we learned that hope isn't just a feeling—it's a fight.`,
+    body: `The doctors knew something wasn't right, and every second suddenly mattered. In the chaos of emergency rooms and beeping machines, we learned that hope isn't just a feeling, it's a fight.`,
     quote: `"The doctors knew something wasn't right, and every second suddenly mattered."`,
     video: "The moment we realized this was bigger than we thought.Episode 3. ❤️#Whereisvenom #Venomstory #h.mp4",
     poster: "episode-3.jpg",
@@ -100,7 +100,7 @@ export const EPISODES: Episode[] = [
     num: 10,
     title: `"Just One More Surgery"`,
     body: `We kept telling ourselves… "Just one more surgery." We had no idea how many more were still ahead…`,
-    quote: `"Just one more surgery — we had no idea how many more were still ahead."`,
+    quote: `"Just one more surgery: we had no idea how many more were still ahead."`,
     video: "We kept telling ourselves…“Just one more surgery.”We had no idea how many more were still ahead .mp4",
     poster: "episode-10.jpg",
     durationSeconds: 74,
@@ -116,7 +116,7 @@ export const EPISODES: Episode[] = [
   },
   {
     num: 12,
-    title: "Twelve Episodes Later — Thank You",
+    title: "Twelve Episodes Later: Thank You",
     body: `Twelve episodes later, all I can say is thank you. Our family has read every prayer, seen every share and felt every act of kindness.`,
     quote: `"Twelve episodes later, all I can say is thank you."`,
     video: "Twelve episodes later, all I can say is thank you.Our family has read every prayer, every encour.mp4",
@@ -127,7 +127,7 @@ export const EPISODES: Episode[] = [
 
 // No confirmed original publish dates for these episodes (Instagram/TikTok
 // exports carry no embedded creation date, and file timestamps only reflect
-// when they were added to this repo) — using the date the site went live
+// when they were added to this repo), using the date the site went live
 // for every episode's uploadDate rather than fabricating individual dates.
 export const EPISODES_UPLOAD_DATE = "2026-08-20T00:00:00Z";
 

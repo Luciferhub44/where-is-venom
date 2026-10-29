@@ -10,7 +10,7 @@ function LoginForm({ error }: { error?: string }) {
     <div className="wv-admin-login">
       <h1>Admin Portal</h1>
       <p style={{ color: "var(--venom-text-dim)", marginBottom: "1.5rem" }}>
-        Where Is Venom? — Private Memorial &amp; Campaign Archives
+        Where Is Venom?: Private Memorial &amp; Campaign Archives
       </p>
       <form method="POST" action="/api/admin/login">
         <input type="password" name="password" placeholder="Admin Password" autoFocus required />
@@ -58,7 +58,7 @@ export default async function AdminPage({
     <main className="wv-admin">
       <div className="wv-admin-header">
         <div>
-          <h1>Where Is Venom? — Admin Portal</h1>
+          <h1>Where Is Venom?: Admin Portal</h1>
           <p style={{ color: "var(--venom-text-dim)", fontSize: "0.95rem" }}>
             Review memorial tributes and view historical campaign records.
           </p>
@@ -109,7 +109,7 @@ export default async function AdminPage({
                     <td>{new Date(s.submittedAt).toLocaleString()}</td>
                     <td><strong>{s.name}</strong></td>
                     <td>{s.relationship}</td>
-                    <td>{s.email || "—"}</td>
+                    <td>{s.email || "-"}</td>
                     <td style={{ maxWidth: "400px", whiteSpace: "pre-wrap", lineHeight: "1.5" }}>
                       {s.message}
                     </td>
@@ -175,14 +175,14 @@ export default async function AdminPage({
                   <td>{new Date(t.paidAt).toLocaleString()}</td>
                   <td>{t.type}</td>
                   <td>{t.currency} {t.amount.toLocaleString()}</td>
-                  <td>{t.qty ?? "—"}</td>
+                  <td>{t.qty ?? "-"}</td>
                   <td>{t.email}</td>
-                  <td>{t.name ?? "—"}</td>
-                  <td>{t.phone ?? "—"}</td>
+                  <td>{t.name ?? "-"}</td>
+                  <td>{t.phone ?? "-"}</td>
                   <td>
-                    {t.street ? `${t.street}, ${t.city}, ${t.state}, ${t.country}` : "—"}
+                    {t.street ? `${t.street}, ${t.city}, ${t.state}, ${t.country}` : "-"}
                   </td>
-                  <td>{t.notes || "—"}</td>
+                  <td>{t.notes || "-"}</td>
                   <td className="mono">{t.reference}</td>
                 </tr>
               ))}

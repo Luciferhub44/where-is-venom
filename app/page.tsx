@@ -19,7 +19,7 @@ function episodesJsonLd() {
     "@context": "https://schema.org",
     "@graph": EPISODES.map((ep) => ({
       "@type": "VideoObject",
-      name: `Where Is Venom? — Episode ${ep.num}: ${ep.title}`,
+      name: `Where Is Venom?: Episode ${ep.num}: ${ep.title}`,
       description: ep.body,
       thumbnailUrl: [`${SITE_URL}${episodePosterSrc(ep.poster)}`],
       uploadDate: EPISODES_UPLOAD_DATE,

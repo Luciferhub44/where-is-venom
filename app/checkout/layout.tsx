@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-// Transaction-specific pages — never index, they carry payment references.
+// Transaction-specific pages: never index, they carry payment references.
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };

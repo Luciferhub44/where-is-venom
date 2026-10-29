@@ -18,7 +18,7 @@ function xmlEscape(value: string): string {
     .replace(/'/g, "&apos;");
 }
 
-// Google video sitemap extension — all 12 episodes live on the homepage, so
+// Google video sitemap extension: all 12 episodes live on the homepage, so
 // this is a single <url> entry with one <video:video> block per episode.
 // https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps
 export async function GET() {
@@ -26,7 +26,7 @@ export async function GET() {
     (ep) => `
     <video:video>
       <video:thumbnail_loc>${SITE_URL}${episodePosterSrc(ep.poster)}</video:thumbnail_loc>
-      <video:title>${xmlEscape(`Where Is Venom? — Episode ${ep.num}: ${ep.title}`)}</video:title>
+      <video:title>${xmlEscape(`Where Is Venom?: Episode ${ep.num}: ${ep.title}`)}</video:title>
       <video:description>${xmlEscape(ep.body)}</video:description>
       <video:content_loc>${SITE_URL}${episodeVideoSrc(ep.video)}</video:content_loc>
       <video:duration>${ep.durationSeconds}</video:duration>

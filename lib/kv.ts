@@ -1,7 +1,7 @@
 // Thin wrapper around Upstash Redis (what Vercel's "Redis" / "KV" storage
 // integration is backed by) for the "cups sponsored" live counter.
 // Falls back gracefully (no crash) when it isn't configured, so the app
-// works out of the box with just Paystack keys — this is an optional upgrade.
+// works out of the box with just Paystack keys: this is an optional upgrade.
 import { CAMPAIGN_FALLBACK_CUPS_SPONSORED } from "./campaign";
 
 const CUPS_KEY = "wiv:cups_sponsored";
@@ -44,7 +44,7 @@ export async function incrementCupsSponsored(by: number): Promise<number | null>
   }
 }
 
-// Transaction log for the admin dashboard — every completed donation and cup
+// Transaction log for the admin dashboard: every completed donation and cup
 // purchase, recorded from the Paystack webhook. Capped list so it can't grow
 // unbounded; Paystack's own dashboard remains the authoritative record.
 export interface TransactionRecord {

@@ -23,7 +23,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="wv-social"
-            title="TikTok — Queen Xtelle"
+            title="TikTok: Queen Xtelle"
             aria-label="TikTok"
           >
             <FaTiktok />
@@ -33,7 +33,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="wv-social"
-            title="Instagram — Queen Xtelle"
+            title="Instagram: Queen Xtelle"
             aria-label="Instagram"
           >
             <FaInstagram />

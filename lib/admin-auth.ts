@@ -1,4 +1,4 @@
-// Minimal single-password admin auth — no session store needed. The cookie
+// Minimal single-password admin auth: no session store needed. The cookie
 // value is a hash derived from ADMIN_PASSWORD, so a valid cookie can be
 // checked without persisting sessions anywhere.
 import crypto from "crypto";

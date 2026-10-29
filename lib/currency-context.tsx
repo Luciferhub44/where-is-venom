@@ -19,7 +19,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
       const raw = window.localStorage.getItem(LOCAL_STORAGE_CURRENCY_KEY);
       if (raw === "NGN" || raw === "USD") setCurrencyState(raw);
     } catch {
-      // localStorage unavailable — fall back to default silently.
+      // localStorage unavailable: fall back to default silently.
     }
   }, []);
 

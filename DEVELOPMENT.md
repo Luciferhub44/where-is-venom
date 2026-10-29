@@ -1,4 +1,4 @@
-# Where Is Venom? — Memorial Website & Handover Guide
+# Where Is Venom?: Memorial Website & Handover Guide
 
 This repository powers **[whereisvenom.com](https://whereisvenom.com)**, a memorial website and archive dedicated to the life and legacy of Venom, created and maintained by Queen Xtelle.
 
@@ -31,7 +31,7 @@ This repository powers **[whereisvenom.com](https://whereisvenom.com)**, a memor
    ```tsx
    <Image src="/images/venom-photo-2.jpg" alt="Description" width={800} height={600} />
    ```
-3. Commit and push to GitHub — Vercel will automatically redeploy.
+3. Commit and push to GitHub: Vercel will automatically redeploy.
 
 ### C. How to review submitted memories
 1. Visit `https://whereisvenom.com/admin` (or `http://localhost:3000/admin` locally).

@@ -8,7 +8,7 @@ export default function ThankYou() {
         <div className="wv-thankyou-body">
           <p>
             To everyone who prayed, donated, shared our story, sent a message, visited, encouraged us
-            or simply remembered Venom — thank you.
+            or simply remembered Venom, thank you.
           </p>
           <p>
             When our family was going through one of the most difficult seasons of our lives, your

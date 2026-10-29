@@ -18,7 +18,7 @@ export default function Hero() {
               A brother. A son. A father. A life that touched so many people.
             </p>
             <p className="wv-hero-sub">
-              This is the story of Venom — the journey our family lived through, the love that
+              This is the story of Venom: the journey our family lived through, the love that
               carried us, and the memories we will always hold close.
             </p>
           </div>
@@ -37,7 +37,7 @@ export default function Hero() {
           <div className="wv-hero-frame">
             <Image
               src="/images/venom-portrait.jpg"
-              alt="Venom — A Life Remembered"
+              alt="Venom: A Life Remembered"
               width={675}
               height={1200}
               priority

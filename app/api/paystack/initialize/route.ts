@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Fundraising campaign has concluded — all payment initialization is disabled.
+// Fundraising campaign has concluded: all payment initialization is disabled.
 export const runtime = "nodejs";
 
 export async function POST() {
